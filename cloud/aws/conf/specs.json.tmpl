@@ -1,0 +1,27 @@
+{
+    "DryRun": {{ specs.DryRun }},
+    "DisableApiTermination": {{ specs.DisableApiTermination }},
+    "InstanceInitiatedShutdownBehavior": "{{ specs.InstanceInitiatedShutdownBehavior }}",
+    "SubnetId": "{{ specs.SubnetId }}",
+    "ImageId": "{{ specs.ImageId }}",
+    "KeyName": "{{ specs.KeyName }}",
+    "SecurityGroupIds": [ "{{ specs.SecurityGroupIds_1 }}" ],
+    "InstanceType": "{{ specs.InstanceType }}",
+    "Monitoring": {
+        "Enabled": {{ specs.Monitoring_Enabled }}
+    },
+    "UserData": "{{ specs.UserData }}",
+    "BlockDeviceMappings": [
+        {
+            "VirtualName": "{{ specs.BlockDeviceMappings_VirtualName }}",
+            "DeviceName": "{{ specs.BlockDeviceMappings_DeviceName }}",
+            "Ebs": {
+                "VolumeSize": {{ specs.BlockDeviceMappings_Ebs_VolumeSize }},
+                "DeleteOnTermination": {{ specs.BlockDeviceMappings_Ebs_DeleteOnTermination }},
+                "VolumeType": "{{ specs.BlockDeviceMappings_Ebs_VolumeType }}",
+                "Encrypted": {{ specs.BlockDeviceMappings_Ebs_Encrypted }}
+            },
+            "NoDevice": ""
+        }
+    ]
+}
