@@ -15,6 +15,15 @@ _check_requirements () {
     return $_STATUS
 }
 
+_log () {
+    local _RESULT="$1"
+    local _LOGFILE="./cloud/aws/logs/${_DATETIME}.log"
+    if [ $( echo ${_RESULT} | jq '.' | wc -c ) -eq 0 ]; then echo "$_RESULT"; return; fi
+    _DATETIME=$( date +'%Y-%m-%d_%H-%M-%S' )
+    echo "${_RESULT}" > $_LOGFILE
+    cat $_LOGFILE | jq '.'
+}
+
 ##########
 # PUBLIC #
 ##########
@@ -33,15 +42,14 @@ _cloud_aws_instance_describe () {
 _cloud_aws_instance_run () {
     local _DATETIME="$1"
     local _JSON='./cloud/aws/conf/specs.json'
-    aws ec2 run-instances --cli-input-json file://${_JSON} |
-        tee -a ./cloud/aws/logs/${_DATETIME}.log
+    local _USER_DATA='./cloud/aws/conf/userdata.sh'
+    _RESULT=$( aws ec2 run-instances --cli-input-json file://${_JSON} --user-data file://${_USER_DATA} )
 }
 
 _cloud_aws_logs_show () {
     if [ $( ls -1 ./logs | wc -l ) -eq 0 ]; then exit 0; fi
     cat ./cloud/aws/logs/* | jq -s '.'
 }
-
 
 _cloud_aws_parse_specs () {
     python ./templater.py
