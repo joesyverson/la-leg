@@ -1,3 +1,10 @@
-env/
+# secrets
 cloud/aws/conf/specs.json
 cloud/aws/conf/specs.yml
+
+# logs
+logs/
+
+# python env
+env/
+venv/

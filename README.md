@@ -26,6 +26,14 @@ There's a Makefile in the root. Call `make help` for further instructions.
 
 ## Structure
 
+The root contains dependency requirements, Git stuff, Makefile and logic, and a docker-compose file.
+
+See below for subdirectories.
+
+### Wordpress
+
+Worpress source directory, which is mounted in the wordpress container.
+
 ### Cloud
 
 Directory for infrastucture scipts, organized by provider.
