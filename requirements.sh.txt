@@ -1,3 +1,5 @@
-jq
-build-essential
 aws
+make
+docker
+docker-compose
+jq

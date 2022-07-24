@@ -4,7 +4,7 @@ services:
 
   wordpress:
     image: wordpress:6.0.1-apache
-    container_name: wordpress-ll
+    container_name: wp-ll
     restart: always
     ports:
       - 8080:80
@@ -27,10 +27,3 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
     - ../mysql:/var/lib/mysql:rw
-
-    # - db:/var/lib/mysql
-
-
-# volumes:
-#   # wordpress:
-  # db:
