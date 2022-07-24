@@ -6,8 +6,9 @@
 
 _check_requirements () {
     _STATUS=0
+    # Depends on using dpkg and apt! 
     while read _LINE || [ -n "$_LINE" ]
-        do dpkg -l | grep $_LINE > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
+        do which "$_LINE" > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
     done < ./requirements.sh.txt
     while read _LINE || [ -n "$_LINE" ]
         do pip freeze $_LINE > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
@@ -55,6 +56,34 @@ _cloud_aws_parse_specs () {
     python ./templater.py
     sed -i 's/False/false/g; s/True/true/g' ./cloud/aws/conf/specs.json
 }
+
+_container_db_logs () {
+    docker logs db-ll
+}
+_container_db_shell () {
+    docker exec -it db-ll bash
+}
+
+_container_wp_logs () {
+    docker logs wp-ll
+}
+
+_container_wp_shell () {
+    docker exec -it wp-ll bash
+}
+
+_containers_down () {
+    docker-compose down
+}
+
+_containers_stop () {
+    docker-compose stop
+}
+
+_containers_up () {
+    docker-compose up -d
+}
+
 
 #######
 # RUN #
