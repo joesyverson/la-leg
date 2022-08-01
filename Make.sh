@@ -1,8 +1,18 @@
 #!/bin/bash
 
+
+
 ###########
 # PRIVATE #
 ###########
+
+_docker () {
+    command podman "$@"
+}
+
+_docker_compose () {
+    command podman-compose "$@"
+}
 
 _check_requirements () {
     _STATUS=0
@@ -11,7 +21,7 @@ _check_requirements () {
         do which "$_LINE" > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
     done < ./requirements.sh.txt
     while read _LINE || [ -n "$_LINE" ]
-        do pip freeze $_LINE > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
+        do pip freeze | grep $_LINE > /dev/null || ( echo "You must install $_LINE in order to procede." && _STATUS=1 )
     done < ./requirements.py.txt    
     return $_STATUS
 }
@@ -58,30 +68,30 @@ _cloud_aws_parse_specs () {
 }
 
 _container_db_logs () {
-    docker logs db-ll
+    _docker logs db-ll
 }
 _container_db_shell () {
-    docker exec -it db-ll bash
+    _docker exec -it db-ll bash
 }
 
 _container_wp_logs () {
-    docker logs wp-ll
+    _docker logs wp-ll
 }
 
 _container_wp_shell () {
-    docker exec -it wp-ll bash
+    _docker exec -it wp-ll bash
 }
 
 _containers_down () {
-    docker-compose down
+    _docker_compose down
 }
 
 _containers_stop () {
-    docker-compose stop
+    _docker_compose stop
 }
 
 _containers_up () {
-    docker-compose up -d
+    _docker_compose up -d
 }
 
 
