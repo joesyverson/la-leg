@@ -17,13 +17,25 @@ services:
       - ./wordpress:/var/www/html
 
   db:
-    image: mysql:8.0.29-debian
+    image: mariadb:10.7.4-focal
     container_name: db-ll
     restart: always
     environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MARIADB_DATABASE: exampledb
+      MARIADB_USER: exampleuser
+      MARIADB_PASSWORD: examplepass
+      MARIADB_ROOT_PASSWORD: '1'
     volumes:
     - ../mysql:/var/lib/mysql:rw
+
+  # db:
+  #   image: mysql:8.0.29-debian
+  #   container_name: db-ll
+  #   restart: always
+  #   environment:
+  #     MYSQL_DATABASE: exampledb
+  #     MYSQL_USER: exampleuser
+  #     MYSQL_PASSWORD: examplepass
+  #     MYSQL_RANDOM_ROOT_PASSWORD: '1'
+  #   volumes:
+  #   - ../mysql:/var/lib/mysql:rw

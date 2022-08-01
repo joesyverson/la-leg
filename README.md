@@ -32,7 +32,7 @@ See below for subdirectories.
 
 ### Wordpress
 
-Worpress source directory, which is mounted in the wordpress container.
+Worpress source directory, which is mounted in the Wordpress container.
 
 ### Cloud
 
