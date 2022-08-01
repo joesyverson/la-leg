@@ -12,6 +12,14 @@ Requirements are listed in the `requirements.*.txt` files in the root directory.
 
 The Makefile will list missing dependencies and exit if they are missing.
 
+### Note on Aliases
+
+This project is currently using Podman and Podman Compose under the guise of Docker. You can get Podman from the Ubuntu or Debian repositories. `podman-compose` is in the Pip 3 repositories. Install it locally if you get a warning about it not being installed. For example:
+
+```bash
+pip3 install --user podman-compose=1.0.3
+```
+
 ## How to Use
 
 **Recommended:** use a virtual env:
@@ -32,7 +40,7 @@ See below for subdirectories.
 
 ### Wordpress
 
-Worpress source directory, which is mounted in the wordpress container.
+Worpress source directory, which is mounted in the Wordpress container.
 
 ### Cloud
 
