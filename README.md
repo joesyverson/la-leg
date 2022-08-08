@@ -5,8 +5,8 @@
 ## Requirements
 
 This project:
-- is developed on Linux Ubuntu. It is not yet adapted for MacOS or Windows. It should run on most Debian-based distributions, but **in some cases may catch some errors with other families:** Red Hat, Arch, etc
-- uses Python 3.10.4 and BASh 5.1.16. Any versions above Python 3.6 and BASh 5 should work
+- is developed on Linux Ubuntu. It is not yet adapted for MacOS or Windows. It should run on most Debian-based distributions, but **in some cases may catch some errors with other families:** Red Hat, Arch, etc.
+- uses Python 3.10.4 and BASh 5.1.16. Any versions above Python 3.6 and BASh 5 should work.
 
 Requirements are listed in the `requirements.*.txt` files in the root directory.
 

@@ -9,10 +9,10 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DB_HOST: "${WORDPRESS_DB_HOST}"
+      WORDPRESS_DB_USER: "${WORDPRESS_DB_USER}"
+      WORDPRESS_DB_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
+      WORDPRESS_DB_NAME: "${WORDPRESS_DB_NAME}"
     volumes:
       - ./wordpress:/var/www/html
 
@@ -21,10 +21,10 @@ services:
     container_name: db-ll
     restart: always
     environment:
-      MARIADB_DATABASE: exampledb
-      MARIADB_USER: exampleuser
-      MARIADB_PASSWORD: examplepass
-      MARIADB_ROOT_PASSWORD: '1'
+      MARIADB_DATABASE: "${MARIADB_DATABASE}"
+      MARIADB_USER: "${MARIADB_USER}"
+      MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
     volumes:
     - ../mysql:/var/lib/mysql:rw
 
