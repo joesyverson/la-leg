@@ -1,6 +1,7 @@
 # secrets
 cloud/aws/conf/specs.json
 cloud/aws/conf/specs.yml
+.env
 
 # logs
 logs/
