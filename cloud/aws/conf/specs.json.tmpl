@@ -1,5 +1,4 @@
 {
-    "DryRun": {{ specs.DryRun }},
     "DisableApiTermination": {{ specs.DisableApiTermination }},
     "InstanceInitiatedShutdownBehavior": "{{ specs.InstanceInitiatedShutdownBehavior }}",
     "SubnetId": "{{ specs.SubnetId }}",
@@ -22,5 +21,15 @@
             },
             "NoDevice": ""
         }
-    ]
+    ],
+    "NetworkInterfaces": [
+        {
+            "DeviceIndex": {{ specs.NetworkInterfaces_DeviceIndex }},
+            "DeleteOnTermination": {{ specs.NetworkInterfaces_DeleteOnTermination }},
+            "AssociatePublicIpAddress": {{ specs.NetworkInterfaces_AssociatePublicIpAddress }}
+        }
+    ],
+    "IamInstanceProfile": {
+        "Arn": "{{ specs.IamInstanceProfile_Arn }}"
+    }
 }
