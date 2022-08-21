@@ -59,31 +59,31 @@ cloud-aws-resources-list:
 	@./Make.sh
 	@make --directory=./cloud/ aws-resources-list $(REGION) $(RESOURCETYPE)
 
-container-db-logs:
+container-wp-db-logs:
 	@./Make.sh
-	@make --directory=./containers container-db-logs
+	@make --directory=./containers wp-db-logs
 
-container-db-shell:
+container-wp-db-shell:
 	@./Make.sh
-	@make --directory=./containers container-db-shell
+	@make --directory=./containers wp-db-shell
 
 container-wp-logs:
 	@./Make.sh
-	@make --directory=./containers container-wp-logs
+	@make --directory=./containers wp-wp-logs
 
 container-wp-shell:
 	@./Make.sh
-	@make --directory=containers container-wp-shell
+	@make --directory=containers wp-wp-shell
 
-containers-down:
+container-wp-down:
 	@./Make.sh
-	@make --directory=containers containers-down
+	@make --directory=containers wp-down
 
-containers-stop:
+container-wp-stop:
 	@./Make.sh
-	make --directory=containers containers-stop
+	make --directory=containers wp-stop
 
-containers-up:
+container-wp-up:
 	@./Make.sh
-	make --directory=containers containers-up
+	make --directory=containers wp-up
 

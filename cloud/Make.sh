@@ -105,7 +105,6 @@ _aws_resources_list () {
 _DATETIME=$( date +'%Y-%m-%d_%H-%M-%S' )
 
 _COMM="$1"
-if [ $_COMM = '_logs_show' ]; then $_COMM; exit; fi
 shift
 _ARGS="$@"
 

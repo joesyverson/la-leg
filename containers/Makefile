@@ -1,23 +1,23 @@
 SHELL := /bin/bash
 .PHONY: help
 
-container-db-logs:
-	@./Make.sh _container_db_logs
+wp-db-logs:
+	@./Make.sh _wp_db_logs
 
-container-db-shell:
-	@./Make.sh _container_db_shell
+wp-db-shell:
+	@./Make.sh _wp_db_shell
 
-container-wp-logs:
-	@./Make.sh _container_wp_logs
+wp-wp-logs:
+	@./Make.sh _wp_wp_logs
 
-container-wp-shell:
-	@./Make.sh _container_wp_shell
+wp-wp-shell:
+	@./Make.sh _wp_wp_shell
 
-containers-down:
-	@./Make.sh _containers_down
+wp-down:
+	@./Make.sh _wp_down
 
-containers-stop:
-	@./Make.sh _containers_stop
+wp-stop:
+	@./Make.sh _wp_stop
 
-containers-up:
-	@./Make.sh _containers_up
+wp-up:
+	@./Make.sh _wp_up
