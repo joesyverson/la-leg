@@ -28,47 +28,60 @@ help:
 
 
 cloud-aws-instance-describe:
-	Make --directory=./cloud/ aws-instance-describe
+	@./Make.sh
+	@make --directory=./cloud/ aws-instance-describe
 
 cloud-aws-instance-run:
-	Make --directory=./cloud/ aws-instance-run
+	@./Make.sh
+	@make --directory=./cloud/ aws-instance-run
 
 cloud-aws-logs-show:
-	Make --directory=./cloud/ aws-logs-show
+	@./Make.sh
+	@make --directory=./cloud/ aws-logs-show
 
 cloud-aws-parse-specs:
-	Make --directory=./cloud/ aws-parse-specs
+	@./Make.sh
+	@make --directory=./cloud/ aws-parse-specs
 
 cloud-aws-regions-list:
-	Make --directory=./cloud/ aws-regions-list
+	@./Make.sh
+	@make --directory=./cloud/ aws-regions-list
 
 cloud-aws-resource-types-get:
-	Make --directory=./cloud/ aws-resource-types-get
+	@./Make.sh
+	@make --directory=./cloud/ aws-resource-types-get
 
 cloud-aws-resource-types-list:
-	Make --directory=./cloud/ aws-resource-types-list
+	@./Make.sh
+	@make --directory=./cloud/ aws-resource-types-list
 
 cloud-aws-resources-list:
-	Make --directory=./cloud/ aws-resources-list $(REGION) $(RESOURCETYPE)
+	@./Make.sh
+	@make --directory=./cloud/ aws-resources-list $(REGION) $(RESOURCETYPE)
 
 container-db-logs:
-	@./Make.sh _container_db_logs
+	@./Make.sh
+	@make --directory=container container-db-logs
 
 container-db-shell:
-	@./Make.sh _container_db_shell
+	@./Make.sh
+	@make --directory=container container-db-shell
 
 container-wp-logs:
-	@./Make.sh _container_wp_logs
+	@./Make.sh
+	@make --directory=container container-wp-logs
 
 container-wp-shell:
-	@./Make.sh _container_wp_shell
+	@./Make.sh
+	@make --directory=container container-wp-shell
 
 containers-down:
-	@./Make.sh _containers_down
+	@./Make.sh
+	@make --directory=container containers-down
 
 containers-stop:
-	@./Make.sh _containers_stop
+	make --directory=container containers-stop
 
 containers-up:
-	@./Make.sh _containers_up
+	make --directory=container containers-up
 

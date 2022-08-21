@@ -97,3 +97,16 @@ _aws_resources_list () {
         aws configservice list-discovered-resources --resource-type $_RESOURCE_TYPE --region $_REGION | jq '.resourceIdentifiers'
     fi
 }
+
+#######
+# RUN #
+#######
+
+_DATETIME=$( date +'%Y-%m-%d_%H-%M-%S' )
+
+_COMM="$1"
+if [ $_COMM = '_logs_show' ]; then $_COMM; exit; fi
+shift
+_ARGS="$@"
+
+$_COMM "$_ARGS"
