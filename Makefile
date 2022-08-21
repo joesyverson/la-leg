@@ -2,7 +2,6 @@ SHELL := /bin/bash
 .PHONY: help
 
 REGION=''
-NEWLIST='false'
 RESOURCETYPE='all'
 
 help:
@@ -14,6 +13,7 @@ help:
 	@echo "- make cloud-aws-logs-show            Run the instance on AWS"
 	@echo "- make cloud-aws-parse-specs          Parse specifications with configs for running and EC2 instance"
 	@echo "- make cloud-aws-regions-list         List all AWS regions"
+	@echo "- cloud-aws-resource-types-get        Refresh list from AWS using CURL"
 	@echo "- make cloud-aws-resource-types-list  List all resource types in AWS"
 	@echo "- make cloud-aws-resources-list       Describe all the resources in a region"
 	@echo "- make container-db-logs              Get database container logs"
@@ -28,25 +28,28 @@ help:
 
 
 cloud-aws-instance-describe:
-	@./Make.sh _cloud_aws_instance_describe
+	Make --directory=./cloud/ aws-instance-describe
 
 cloud-aws-instance-run:
-	@./Make.sh _cloud_aws_instance_run
+	Make --directory=./cloud/ aws-instance-run
 
 cloud-aws-logs-show:
-	@./Make.sh _cloud_aws_logs_show
+	Make --directory=./cloud/ aws-logs-show
 
 cloud-aws-parse-specs:
-	@./Make.sh _cloud_aws_parse_specs
+	Make --directory=./cloud/ aws-parse-specs
 
 cloud-aws-regions-list:
-	@./Make.sh _cloud_aws_regions_list
+	Make --directory=./cloud/ aws-regions-list
+
+cloud-aws-resource-types-get:
+	Make --directory=./cloud/ aws-resource-types-get
 
 cloud-aws-resource-types-list:
-	@./Make.sh _cloud_aws_resource_types_list $(NEWLIST)
+	Make --directory=./cloud/ aws-resource-types-list
 
 cloud-aws-resources-list:
-	@./Make.sh _cloud_aws_resources_list $(REGION) $(RESOURCETYPE)
+	Make --directory=./cloud/ aws-resources-list $(REGION) $(RESOURCETYPE)
 
 container-db-logs:
 	@./Make.sh _container_db_logs
