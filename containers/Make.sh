@@ -32,15 +32,15 @@ _container_wp_shell () {
 }
 
 _containers_down () {
-    _docker_compose -f ./wordpress/docker-compose.yml containers down
+    _docker_compose -f ./wordpress/docker-compose.yml down
 }
 
 _containers_stop () {
-    _docker_compose -f ./wordpress/docker-compose.yml containers stop
+    _docker_compose -f ./wordpress/docker-compose.yml stop
 }
 
 _containers_up () {
-    _docker_compose -f ./wordpress/docker-compose.yml containers up -d
+    _docker_compose -f ./wordpress/docker-compose.yml up -d
 }
 
 #######
@@ -50,7 +50,6 @@ _containers_up () {
 _DATETIME=$( date +'%Y-%m-%d_%H-%M-%S' )
 
 _COMM="$1"
-if [ $_COMM = '_logs_show' ]; then $_COMM; exit; fi
 shift
 _ARGS="$@"
 

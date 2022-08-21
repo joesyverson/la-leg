@@ -61,27 +61,29 @@ cloud-aws-resources-list:
 
 container-db-logs:
 	@./Make.sh
-	@make --directory=container container-db-logs
+	@make --directory=./containers container-db-logs
 
 container-db-shell:
 	@./Make.sh
-	@make --directory=container container-db-shell
+	@make --directory=./containers container-db-shell
 
 container-wp-logs:
 	@./Make.sh
-	@make --directory=container container-wp-logs
+	@make --directory=./containers container-wp-logs
 
 container-wp-shell:
 	@./Make.sh
-	@make --directory=container container-wp-shell
+	@make --directory=containers container-wp-shell
 
 containers-down:
 	@./Make.sh
-	@make --directory=container containers-down
+	@make --directory=containers containers-down
 
 containers-stop:
-	make --directory=container containers-stop
+	@./Make.sh
+	make --directory=containers containers-stop
 
 containers-up:
-	make --directory=container containers-up
+	@./Make.sh
+	make --directory=containers containers-up
 
