@@ -20,6 +20,10 @@ This project is currently using Podman and Podman Compose under the guise of Doc
 pip3 install --user podman-compose=1.0.3
 ```
 
+### Other environmental requirements
+
+This project depends on storage in the parent directory for storing the staging database and storing production backups. It must therefore be stored no higher in the directory hierarchy than the second level. In other words, don't store it in `/`. Ideally, it's stored in a user's home directory (`/root` works as well as `/home/${USER}`).
+
 ## How to Use
 
 **Recommended:** use a virtual env:
@@ -34,21 +38,29 @@ There's a Makefile in the root. Call `make help` for further instructions.
 
 ## Structure
 
-The root contains dependency requirements, Git stuff, Makefile and logic, and a docker-compose file.
+```
+.
+├── cloud
+├── containers
+├── Makefile
+├── Make.sh
+├── README.md
+├── requirements.py.txt
+├── requirements.sh.txt
+└── venv
 
-See below for subdirectories.
+3 directories, 5 files
+```
 
-### Wordpress
+### Containers
 
-Worpress source directory, which is mounted in the Wordpress container.
+Directory for containerized services. Each service includes automatic build processes
 
 ### Cloud
 
 Directory for infrastucture scipts, organized by provider.
 
-#### AWS References
+### Plabooks
 
-- Run instances: https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html
-- Examples: https://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html#examples
-- JSON skeletons: https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-skeleton.html
-- Error codes: https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html
+Directory for Ansible playbooks.
+
