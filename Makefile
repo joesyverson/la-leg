@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 .PHONY: help
 
+PERM_MODEL=''
 REGION=''
 RESOURCETYPE='all'
 
@@ -87,3 +88,8 @@ container-wp-up:
 	@./Make.sh
 	make --directory=containers wp-up
 
+git-branch-clean:
+	@./Make.sh _git_branch_clean
+
+git-branch-current:
+	@./Make.sh _git_branch_current

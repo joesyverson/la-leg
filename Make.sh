@@ -30,6 +30,29 @@ _check_requirements () {
     return 0
 }
 
+##########
+# PUBLIC #
+##########
+
+_git_branch_clean () {
+    local _BRANCHES=$( git branch | sed 's/*//g' )
+    local _CURRENT_BRANCH=$( _git_branch_current )
+    for _BRANCH in $_BRANCHES; do
+        if [[ "$_BRANCH" = 'main' || "$_BRANCH" = "$_CURRENT_BRANCH" ]]; then echo "Skipping branch '$_BRANCH'."; sleep 0.5; continue; fi
+        read -p "Are you sure you want to delete branch '$_BRANCH' from local and remote? [n/Y] " _ANSWER
+        case $_ANSWER in
+            'n' ) echo "Skipping branch '${_BRANCH}.'";;
+            'Y' ) echo "Deleting branch '${_BRANCH}'."; git branch -D $_BRANCH; git push --delete origin $_BRANCH;;
+            * ) echo "Please answer 'n' for 'no' 'Y' for 'yes'. Skipping branch '${_BRANCH}.'";;
+        esac
+        sleep 0.5
+    done
+}
+
+_git_branch_current () {
+    git branch --show-current
+}
+
 
 #######
 # RUN #
@@ -37,3 +60,8 @@ _check_requirements () {
 
 _check_requirements || exit 1
 
+_COMM="$1"
+shift
+_ARGS="$@"
+
+$_COMM $_ARGS
