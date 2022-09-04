@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# function to recover passwords from secret file -- not included in this repository
-source ${HOME}/.bashrc.sh &> /dev/null
-expose-ll
-
-export AWS_ACCESS_KEY_ID="$_LL_AWS_ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="$_LL_AWS_SECRET_ACCESS_KEY"
-export AWS_DEFAULT_REGION="$_LL_AWS_DEFAULT_REGION"
-export AWS_DEFAULT_OUTPUT="$_LL_AWS_DEFAULT_OUTPUT"
-
 ###########
 # PRIVATE #
 ###########
@@ -19,6 +10,20 @@ _log () {
     if [ $( echo ${_RESULT} | jq '.' | wc -c ) -eq 0 ]; then echo "$_RESULT"; return; fi
     echo "${_RESULT}" > $_LOGFILE
     cat $_LOGFILE | jq '.'
+}
+
+_permissions_model_set () {
+    local _MODEL="$1"
+    if [ $_MODEL = 'custom' ]; then
+        # function to recover passwords from secret file -- not included in this repository
+        source ${HOME}/.bashrc.sh &> /dev/null
+        expose-ll
+
+        export AWS_ACCESS_KEY_ID="$_LL_AWS_ACCESS_KEY_ID"
+        export AWS_SECRET_ACCESS_KEY="$_LL_AWS_SECRET_ACCESS_KEY"
+        export AWS_DEFAULT_REGION="$_LL_AWS_DEFAULT_REGION"
+        export AWS_DEFAULT_OUTPUT="$_LL_AWS_DEFAULT_OUTPUT"
+    fi
 }
 
 ##########
@@ -37,8 +42,14 @@ _aws_instance_describe () {
 }
 
 _aws_instance_run () {
+    local _MODEL="$1"
+    _permissions_model_set "$_MODEL"
+    local _REGION="$2"
+    if [ -z "$_REGION" ]; then _REGION="$AWS_DEFAULT_REGION"; fi
+
     local _JSON='./aws/conf/specs.json'
     local _USER_DATA='./aws/conf/userdata.sh'
+    # Change this: remove region from JSON and pass here
     _RESULT=$( aws ec2 run-instances --cli-input-json file://${_JSON} --user-data file://${_USER_DATA} )
 }
 
@@ -83,8 +94,10 @@ _aws_resource_types_list () {
 
 
 _aws_resources_list () {
-    local _REGION="$1"
+    local _MODEL="$1"
     local _RESOURCE_TYPE="$2"
+    _permissions_model_set "$_MODEL"
+    local _REGION="$3"
     if [ -z "$_REGION" ]; then _REGION="$AWS_DEFAULT_REGION"; fi
 
     if [ _RESOURCE_TYPE = 'all' ]; then
