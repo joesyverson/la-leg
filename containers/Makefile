@@ -1,6 +1,8 @@
 SHELL := /bin/bash
 .PHONY: help
 
+HASH=''
+
 wp-db-logs:
 	@./Make.sh _wp_db_logs
 
@@ -12,6 +14,9 @@ wp-wp-logs:
 
 wp-wp-shell:
 	@./Make.sh _wp_wp_shell
+
+# wp-build:
+# 	@./Make.sh _wp_build $(HASH)
 
 wp-down:
 	@./Make.sh _wp_down

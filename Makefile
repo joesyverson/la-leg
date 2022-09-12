@@ -1,6 +1,8 @@
 SHELL := /bin/bash
 .PHONY: help
 
+
+HASH=$(shell ./Make.sh _git_branch_current | cut -d ' ' -f 2)
 PERM_MODEL='custom'
 RSRC_TYPE='all'
 REGION=''
@@ -31,7 +33,7 @@ help:
 	@echo "- make containers-stop                                       Stop containers"
 	@echo "- make containers-up                                         Start containers and pull if necessary"
 	@echo "- make git-branch-clean                                      Delete branches on local and remote interactively"
-	@echo "- make git-branch-current                                    Print the current Git branch"
+	@echo "- make git-branch-current                                    Print the current Git branch name and hash"
 	@echo ""
 
 
@@ -82,6 +84,9 @@ container-wp-logs:
 container-wp-shell:
 	@./Make.sh
 	@make --directory=containers wp-wp-shell
+
+# container-wp-build:
+# 	@make --directory=containers wp-build HASH=$(HASH)
 
 container-wp-down:
 	@./Make.sh

@@ -50,7 +50,10 @@ _git_branch_clean () {
 }
 
 _git_branch_current () {
-    git branch --show-current
+    local _NAME=$( git branch --show-current )
+    local _HASH=$( git rev-parse --short HEAD )
+
+    echo "$_NAME $_HASH"
 }
 
 
