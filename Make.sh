@@ -56,6 +56,13 @@ _git_branch_current () {
     echo "$_NAME $_HASH"
 }
 
+_git_merge_squash () {
+    local _BRANCH="$1"
+    if [ -z "$_BRANCH" ]; then echo 'You must specify a branch in order to proceed. Exiting...'; exit 1; fi
+    git merge --squash "$_BRANCH"
+    git commit
+}
+
 
 #######
 # RUN #
