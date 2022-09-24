@@ -47,10 +47,10 @@ _aws_instance_run () {
     local _REGION="$2"
     if [ -z "$_REGION" ]; then _REGION="$AWS_DEFAULT_REGION"; fi
 
-    local _JSON='./aws/conf/specs.json'
-    local _USER_DATA='./aws/conf/userdata.sh'
+    local _JSON='./aws/conf/data.json'
+    local _USER_DATA='./aws/userdata.sh'
     # Change this: remove region from JSON and pass here
-    _RESULT=$( aws ec2 run-instances --cli-input-json file://${_JSON} --user-data file://${_USER_DATA} )
+    _RESULT=$( aws ec2 run-instances --cli-input-json file://${_JSON} --user-data file://${_USER_DATA} --dry-run )
 }
 
 _aws_logs_show () {
@@ -59,8 +59,8 @@ _aws_logs_show () {
 }
 
 _aws_parse_specs () {
-    python ./templater.py
-    sed -i 's/False/false/g; s/True/true/g' ./aws/conf/specs.json
+    python aws/templater.py
+    sed -i 's/False/false/g; s/True/true/g' ./aws/conf/data.json
 }
 
 _aws_regions_list () {

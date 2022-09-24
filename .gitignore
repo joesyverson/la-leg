@@ -1,6 +1,7 @@
 # secrets
-cloud/aws/conf/specs.json
-cloud/aws/conf/specs.yml
+cloud/aws/conf/data.json
+cloud/aws/conf/data.yml
+cloud/aws/.ssh/*
 .env
 
 # logs

@@ -1,0 +1,43 @@
+{
+    "DisableApiTermination": {{ data.DisableApiTermination }},
+    "InstanceInitiatedShutdownBehavior": "{{ data.InstanceInitiatedShutdownBehavior }}",
+    "SubnetId": "{{ data.SubnetId }}",
+    "ImageId": "{{ data.ImageId }}",
+    "KeyName": "{{ data.KeyName }}",
+    "SecurityGroupIds": [ "{{ data.SecurityGroupIds_1 }}" ],
+    "InstanceType": "{{ data.InstanceType }}",
+    "Monitoring": {
+        "Enabled": {{ data.Monitoring_Enabled }}
+    },
+    "BlockDeviceMappings": [
+        {
+            "VirtualName": "{{ data.BlockDeviceMappings_VirtualName }}",
+            "DeviceName": "{{ data.BlockDeviceMappings_DeviceName }}",
+            "Ebs": {
+                "VolumeSize": {{ data.BlockDeviceMappings_Ebs_VolumeSize }},
+                "DeleteOnTermination": {{ data.BlockDeviceMappings_Ebs_DeleteOnTermination }},
+                "VolumeType": "{{ data.BlockDeviceMappings_Ebs_VolumeType }}",
+                "Encrypted": {{ data.BlockDeviceMappings_Ebs_Encrypted }}
+            },
+            "NoDevice": ""
+        }
+    ],
+    "NetworkInterfaces": [
+        {
+            "DeviceIndex": {{ data.NetworkInterfaces_DeviceIndex }},
+            "DeleteOnTermination": {{ data.NetworkInterfaces_DeleteOnTermination }},
+            "AssociatePublicIpAddress": {{ data.NetworkInterfaces_AssociatePublicIpAddress }}
+        }
+    ],
+    "TagSpecifications": [
+        {
+            "ResourceType": "instance",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "{{ data.Tags_1_Value }}"
+                }
+            ]
+        }
+    ]
+}
