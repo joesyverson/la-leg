@@ -1,15 +1,18 @@
+import os
 import yaml
 import json
 from jinja2 import Environment, FileSystemLoader
 
-with open('conf/specs.yml') as specs_yaml:
-    specs_dict = yaml.safe_load(specs_yaml)
+# print(os.getcwd())
 
-env = Environment(loader=FileSystemLoader('./conf'))
-specs_template = 'specs.json.tmpl'
-env_template = env.get_template(specs_template)
-specs_json_data = env_template.render(specs=specs_dict)
+with open('aws/conf/data.yml') as data_yaml:
+    data_dict = yaml.safe_load(data_yaml)
 
-specs_json_file = 'conf/specs.json'
-with open(specs_json_file, 'w') as file:
-    file.write(specs_json_data)
+env = Environment(loader=FileSystemLoader('aws/conf'))
+data_template = 'data.json.tmpl'
+env_template = env.get_template(data_template)
+data_json = env_template.render(data=data_dict)
+
+data_json_file = 'aws/conf/data.json'
+with open(data_json_file, 'w') as file:
+    file.write(data_json)

@@ -45,7 +45,7 @@ cloud-aws-instance-describe:
 
 cloud-aws-instance-run:
 	@./Make.sh
-	@make --directory=./cloud/ aws-instance-run $(PERM_MODEL) $(REGION)
+	@make --directory=./cloud/ aws-instance-run PERM_MODEL=$(PERM_MODEL) REGION=$(REGION)
 
 cloud-aws-logs-show:
 	@./Make.sh
@@ -65,11 +65,11 @@ cloud-aws-resource-types-get:
 
 cloud-aws-resource-types-list:
 	@./Make.sh
-	@make --directory=./cloud/ aws-resource-types-list
+	@make --directory=./cloud/ aws-resource-types-list 
 
 cloud-aws-resources-list:
 	@./Make.sh
-	@make --directory=./cloud/ aws-resources-list $(PERM_MODEL) $(RSRC_TYPE) $(REGION)
+	@make --directory=./cloud/ aws-resources-list PERM_MODEL=$(PERM_MODEL) RSRC_TYPE=$(RSRC_TYPE) REGION=$(REGION)
 
 container-wp-db-logs:
 	@./Make.sh
