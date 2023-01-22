@@ -1,4 +1,3 @@
-aws
 make
 docker
 docker-compose
