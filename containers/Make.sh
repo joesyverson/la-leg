@@ -16,32 +16,24 @@ _docker_compose () {
 # PUBLIC #
 ##########
 
-_wp_db_logs () {
-    _docker logs db-ll
-}
-_wp_db_shell () {
-    _docker exec -it db-ll bash
-}
+# _wp_db_logs () {
+#     _docker logs db-ll
+# }
+# _wp_db_shell () {
+#     _docker exec -it db-ll bash
+# }
 
-_wp_wp_logs () {
-    _docker logs wp-ll
-}
+# _wp_down () {
+#     _docker_compose -f ./wordpress/docker-compose.yml down
+# }
 
-_wp_wp_shell () {
-    _docker exec -it wp-ll bash
-}
+# _wp_stop () {
+#     _docker_compose -f ./wordpress/docker-compose.yml stop
+# }
 
-_wp_down () {
-    _docker_compose -f ./wordpress/docker-compose.yml down
-}
-
-_wp_stop () {
-    _docker_compose -f ./wordpress/docker-compose.yml stop
-}
-
-_wp_up () {
-    _docker_compose -f ./wordpress/docker-compose.yml up -d
-}
+# _wp_up () {
+#     _docker_compose -f ./wordpress/docker-compose.yml up -d
+# }
 
 #######
 # RUN #

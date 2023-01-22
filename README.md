@@ -14,15 +14,11 @@ The Makefile will list missing dependencies and exit if they are missing.
 
 ### Note on Aliases
 
-This project is currently using Podman and Podman Compose under the guise of Docker. You can get Podman from the Ubuntu or Debian repositories. `podman-compose` is in the Pip 3 repositories. Install it locally if you get a warning about it not being installed. For example:
+This project currently uses Podman and Podman Compose under the guise of Docker. You can get Podman from the Ubuntu or Debian repositories. `podman-compose` is in the Pip 3 repositories. Install it locally if you get a warning about it not being installed. For example:
 
 ```bash
 pip3 install --user podman-compose=1.0.3
 ```
-
-### Other environmental requirements
-
-This project depends on storage in the parent directory for storing the staging database and storing production backups. It must therefore be stored no higher in the directory hierarchy than the second level. In other words, don't store it in `/`. Ideally, it's stored in a user's home directory (`/root` works as well as `/home/${USER}`).
 
 ## How to Use
 
@@ -60,7 +56,7 @@ Directory for containerized services. Each service includes automatic build proc
 
 Directory for infrastucture scipts, organized by provider.
 
-### Plabooks
+### Playbooks
 
 Directory for Ansible playbooks.
 
