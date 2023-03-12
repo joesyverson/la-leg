@@ -2,35 +2,64 @@ SHELL := /bin/bash
 .PHONY: help
 
 
-HASH=$(shell ./Make.sh _git_branch_current | cut -d ' ' -f 2)
-PERM_MODEL='custom'
-RSRC_TYPE='all'
-REGION=''
-BRANCH=''
+TAG=$(shell ./Make.sh _git_branch_current)
+TARGET=dev
+FILE=""
 
 help:
 	@echo ""
-	@echo "Parameters:"
-	@echo "- PERM_MODEL=[env|custom]                                    Custom is a private method preferred by the architect. Use 'env' for AWS to gather variables from your environment or config."
-	@echo "- RSRC_TYPE=[AWS::Service::Feature|all]                      Run resource-types-list for a full list of values."
-	@echo "- REGION=[aws-region|all]                                    Run regions-list for a full list of values."
-	@echo "- BRANCH=[branch-you-wanna-merge]                            Specify the Git branch"
-	@echo ""
 	@echo "Targets:"
-	@echo "- make help                                                  Print this menu"
-	@echo "- make git-branch-clean                                      Delete branches on local and remote interactively"
-	@echo "- make git-branch-current                                    Print the current Git branch name and hash"
-	@echo "- make git-merge-squash BRANCH                               Squash merge with interactive commit message"
+	@echo "- help                                                  Print this menu"
+	@echo "- container-nginx-build TAG TARGET                      Build image at TARGET with TAG"
+	@echo "- container-nginx-rmi TAG TARGET                        Remove image at TARGET with TAG"
+	@echo "- git-branch-clean                                      Delete branches on local and remote interactively"
+	@echo "- git-branch-current                                    Print the current Git branch name and hash"
+	@echo "- git-commit MSG                                        Commit and add a tag to the branch of the branch name"
+	@echo "- git-merge-squash BRANCH                               Squash merge with interactive commit message"
 	@echo ""
-
 
 # cloud-aws-resources-list:
 # 	@./Make.sh
 # 	@make --directory=./cloud/ aws-resources-list PERM_MODEL=$(PERM_MODEL) RSRC_TYPE=$(RSRC_TYPE) REGION=$(REGION)
 
-# container-wp-db-logs:
-# 	@./Make.sh
-# 	@make --directory=./containers wp-db-logs
+container-nginx-build:
+	@./Make.sh
+	@make --directory=./containers nginx-build TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-images:
+	@./Make.sh
+	@make --directory=./containers nginx-images
+
+container-nginx-logs:
+	@./Make.sh
+	@make --directory=./containers nginx-logs TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-remove:
+	@./Make.sh
+	@make --directory=./containers nginx-remove TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-rmi:
+	@./Make.sh
+	@make --directory=./containers nginx-rmi TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-run:
+	@./Make.sh
+	@make --directory=./containers nginx-run TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-start:
+	@./Make.sh
+	@make --directory=./containers nginx-start TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-stop:
+	@./Make.sh
+	@make --directory=./containers nginx-stop TAG="$(TAG)" TARGET="$(TARGET)"
+
+container-nginx-shell:
+	@./Make.sh
+	@make --directory=./containers nginx-shell TAG="$(TAG)" TARGET="$(TARGET)"
+
+git-add-partial:
+	@./Make.sh _git_add_partial "$(FILE)"
 
 git-branch-clean:
 	@./Make.sh _git_branch_clean
@@ -38,5 +67,18 @@ git-branch-clean:
 git-branch-current:
 	@./Make.sh _git_branch_current
 
+git-commit:
+	@./Make.sh _git_commit "$(MSG)"
+
+git-commit-amend:
+	@./Make.sh _git_commit_amend
+
 git-merge-squash:
-	@./Make.sh _git_merge_squash $(BRANCH)
+	@./Make.sh _git_merge_squash "$(BRANCH)"
+
+git-push-head:
+	@./Make.sh _git_push_head "$(BRANCH)"
+
+print-config:
+	@echo TAG: $(TAG)
+	@echo TARGET: $(TARGET)

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ./.env
 
 ###########
 # PRIVATE #
@@ -34,6 +34,11 @@ _check_requirements () {
 # PUBLIC #
 ##########
 
+_git_add_partial () {
+    local _FILE="$1"
+    git add -p "$_FILE"
+}
+
 _git_branch_clean () {
     local _BRANCHES=$( git branch | sed 's/*//g' )
     local _CURRENT_BRANCH=$( _git_branch_current )
@@ -50,17 +55,49 @@ _git_branch_clean () {
 }
 
 _git_branch_current () {
-    local _NAME=$( git branch --show-current )
-    local _HASH=$( git rev-parse --short HEAD )
+    _IDENTIFIER="$1"
+    if [ "$_IDENTIFIER" = 'hash' ]
+        then _ECHO=$( git rev-parse --short HEAD )
+        else _ECHO=$( git branch --show-current )
+    fi
 
-    echo "$_NAME $_HASH"
+    echo "$_ECHO"
+}
+
+_git_commit () {
+    local _MSG="$1"
+    if [ -z "$_MSG" ]; then echo "Give us a message to commit with! Exiting"; exit 1; fi
+    if [ "$(_git_branch_current)" = 'main' ];
+        then echo "Check out a branch, commit, then return to this branch for a merge. Exiting..."
+        exit 1
+    fi
+    _BRANCH_CURRENT=$( _git_branch_current )
+    git commit -m "$_MSG"
+
+    local _TAGLIST=$( git tag --list )
+    if ! echo "$_TAGLIST" | grep "$_BRANCH_CURRENT" > /dev/null;
+        then git tag "$_BRANCH_CURRENT" 
+        else echo Cannot tag "$_BRANCH_CURRENT" because this branch has already been added as a tag.
+             echo Use a unique branch name or remove the tag. Existent tags:
+             echo -e "\n${_TAGLIST}\n"
+             echo Committed without tagging. Exiting..
+    fi
+}
+
+_git_commit_amend () {
+    git commit --amend --no-edit
+}
+
+
+_git_push_head () {
+    git push origin "/refs/heads/$( _git_branch_current )"
 }
 
 _git_merge_squash () {
     local _BRANCH="$1"
     if [ -z "$_BRANCH" ]; then echo 'You must specify a branch in order to proceed. Exiting...'; exit 1; fi
     git merge --squash "$_BRANCH"
-    git commit
+    git commit -c "$_BRANCH"
 }
 
 
