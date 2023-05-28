@@ -10,3 +10,7 @@ logs/
 # python env
 env/
 venv/
+
+# notes
+notes.txt
+
