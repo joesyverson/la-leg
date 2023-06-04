@@ -16,17 +16,17 @@ _docker_compose () {
 }
 
 _container_name () {
-    local _TAG=$( echo "${1}" | cut -d ' ' -f 1 )
+    local _CB=$( echo "${1}" | cut -d ' ' -f 1 )
     local _TARGET=$( echo "${1}" | cut -d ' ' -f 2 )
-    local _CONTAINER="laleg-${_TARGET}-${_TAG}"
+    local _CONTAINER="laleg-${_TARGET}_${_CB}"
 
     echo "$_CONTAINER"
 }
 
 _image_name () {
-    local _TAG=$( echo "${1}" | cut -d ' ' -f 1 )
+    local _CB=$( echo "${1}" | cut -d ' ' -f 1 )
     local _TARGET=$( echo "${1}" | cut -d ' ' -f 2 )
-    local _IMAGE="laleg:${_TARGET}-${_TAG}"
+    local _IMAGE="laleg:${_TARGET}_${_CB}"
 
     echo "$_IMAGE"
 }
