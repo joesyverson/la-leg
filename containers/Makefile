@@ -1,32 +1,32 @@
 SHELL := /bin/bash
 .PHONY: help
 
-TAG=''
+CB=''
 TARGET=''
 
 nginx-build:
-	@./Make.sh _nginx_build "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_build "$(CB)" "$(TARGET)"
 
 nginx-images:
 	@./Make.sh _nginx_images
 
 nginx-logs:
-	@./Make.sh _nginx_logs "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_logs "$(CB)" "$(TARGET)"
 
 nginx-remove:
-	@./Make.sh _nginx_remove "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_remove "$(CB)" "$(TARGET)"
 
 nginx-rmi:
-	@./Make.sh _nginx_rmi "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_rmi "$(CB)" "$(TARGET)"
 
 nginx-run:
-	@./Make.sh _nginx_run "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_run "$(CB)" "$(TARGET)"
 
 nginx-start:
-	@./Make.sh _nginx_start "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_start "$(CB)" "$(TARGET)"
 
 nginx-stop:
-	@./Make.sh _nginx_stop "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_stop "$(CB)" "$(TARGET)"
 
 nginx-shell:
-	@./Make.sh _nginx_shell "$(TAG)" "$(TARGET)"
+	@./Make.sh _nginx_shell "$(CB)" "$(TARGET)"
